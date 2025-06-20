@@ -6,15 +6,17 @@ def budget_node(state: TripItinerary):
     user_input = state.user_input
     activities = state.activities
     transportation = state.transportation
+    home_country = state.user_input.home_country
     hotel = state.hotels
     template = get_prompt("")
-    prompt = PromptTemplate(template = template, input_variables=["activities", "transportation","hotel", "user_input"])
+    prompt = PromptTemplate(template = template, input_variables=["activities", "transportation","hotel", "user_input", "home_country"])
     chain = prompt | llm_model
     response = chain.invoke({
         "activities": activities, 
         "transportation": transportation,
         "hotel": hotel, 
         "user_input": user_input
+        "home_country": home_country
     })
     state.budget_estimate = response.content
     return TripItinerary(
