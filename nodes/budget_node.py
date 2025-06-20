@@ -15,7 +15,7 @@ def budget_node(state: TripItinerary):
         "activities": activities, 
         "transportation": transportation,
         "hotel": hotel, 
-        "user_input": user_input
+        "user_input": user_input,
         "home_country": home_country
     })
     state.budget_estimate = response.content
